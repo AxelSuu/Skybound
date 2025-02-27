@@ -15,15 +15,19 @@ class NewHighscore:
         self.screen = pg.display.set_mode((self.WIDTH, self.HEIGHT))
         self.bg_scroll = 0
         self.background = pg.image.load(os.path.join(self.img_folder_path, 'Sky2.png')).convert()
+        self.background2 = pg.transform.flip(self.background, True, False).convert()
         self.show_NH_screen()
 
     def show_NH_screen(self):
         while self.on_NH:
             self.screen.fill(self.WHITE)
             self.bg_scroll += 0.5
-            if self.bg_scroll >= self.background.get_width() - 480:
+            if self.bg_scroll >= self.background.get_width():
                 self.bg_scroll = 0
+                self.background = pg.transform.flip(self.background, True, False).convert()
+                self.background2 = pg.transform.flip(self.background2, True, False).convert()
             self.screen.blit(self.background, (480 - self.background.get_width() + self.bg_scroll, 0))
+            self.screen.blit(self.background2, (480 -self.background.get_width()*2 + self.bg_scroll, 0))
 
             draw_text(self.screen, f"Press V to play Level {GetScore()}", 22, self.WIDTH / 2, self.HEIGHT * 2 / 4) # {Loop.levelcounter}
             draw_text(self.screen, "Press Q to go to Main Menu", 22, self.WIDTH / 2, self.HEIGHT * 3 / 4)
