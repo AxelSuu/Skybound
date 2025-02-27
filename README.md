@@ -21,4 +21,4 @@ with homemade API functionality.
 
 ## Example Build instructions for pyinstaller script / autopytoexe:
 
-pyinstaller --noconfirm --onefile --windowed --icon "C:Path to game\sprites\icon.ico" --name "Skybound4" --add-data "C:Path to game\font;font/" --add-data "C:\Path to game\txts;txts/" --add-data "C:Path to game\sprites;sprites/" --add-data "C:Path to game\sfxs;sounds/"  "C:Path to game\main.py"
+pyinstaller --noconfirm --onefile --windowed --icon "C:Path to game\imgs\icon.ico" --name "Skybound4" --add-data "C:Path to game\font;font/" --add-data "C:\Path to game\txts;txts/" --add-data "C:Path to game\imgs;imgs/" --add-data "C:Path to game\sfxs;sfxs/"  "C:Path to game\main.py"
