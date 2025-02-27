@@ -40,7 +40,8 @@ class Main_menu():
                 self.background = pg.transform.flip(self.background, True, False).convert()
                 self.background2 = pg.transform.flip(self.background2, True, False).convert()
             self.screen.blit(self.background, (480 - self.background.get_width() + self.bg_scroll, 0))
-            self.screen.blit(self.background2, (480 -self.background.get_width()*2 + self.bg_scroll, 0))
+            if self.bg_scroll > self.background.get_width() - 480:
+                self.screen.blit(self.background2, (480 -self.background.get_width()*2 + self.bg_scroll, 0))
 
             # Text block
             draw_text(self.screen, "Skybound", 50, self.WIDTH / 2, self.HEIGHT / 4)
