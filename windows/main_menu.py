@@ -24,6 +24,7 @@ class Main_menu():
         icon = pg.image.load(os.path.join(self.img_folder_path, 'icon.png'))
         self.bg_scroll = 0
         self.background = pg.image.load(os.path.join(self.img_folder_path, 'Sky2.png')).convert()
+        self.background2 = pg.transform.flip(self.background, True, False).convert()
         pg.display.set_icon(icon)
         self.main_menu()
 
@@ -34,9 +35,12 @@ class Main_menu():
             # Background animation block
             self.screen.fill(self.WHITE)
             self.bg_scroll += 0.5
-            if self.bg_scroll >= self.background.get_width() - 480:
+            if self.bg_scroll >= self.background.get_width():
                 self.bg_scroll = 0
+                self.background = pg.transform.flip(self.background, True, False).convert()
+                self.background2 = pg.transform.flip(self.background2, True, False).convert()
             self.screen.blit(self.background, (480 - self.background.get_width() + self.bg_scroll, 0))
+            self.screen.blit(self.background2, (480 -self.background.get_width()*2 + self.bg_scroll, 0))
 
             # Text block
             draw_text(self.screen, "Skybound", 50, self.WIDTH / 2, self.HEIGHT / 4)
