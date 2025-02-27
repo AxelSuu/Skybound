@@ -33,10 +33,8 @@ class Gameover:
                 if GetScore() > 1:
                     SetLevel(2)
                 SetGamestate("GAME")
-                pg.mixer.music.unpause()
             if keys[pg.K_q]:
                 self.on_gameover = False
                 SetGamestate("MAIN_MENU")
-                pg.mixer.music.unpause()
                 
             pg.display.flip()
