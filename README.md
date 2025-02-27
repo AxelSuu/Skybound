@@ -7,6 +7,7 @@
 - NPC monster with simple AI and infinite, random level creation.
 - A simple database for storing highscore, player selection, 
 with homemade API functionality.
+- 43 MB executable with pyinstaller instructions
 - Documented according to PEP-8 (ish).
 
 ## Missing functionality:
@@ -19,6 +20,6 @@ with homemade API functionality.
 ## I took some art from the internet
 
 
-## Example Build instructions for pyinstaller script / autopytoexe:
+## Build instructions for pyinstaller (only 43MB!):
 
 pyinstaller --noconfirm --onefile --windowed --icon "C:Path to game\imgs\icon.ico" --name "Skybound4" --add-data "C:Path to game\font;font/" --add-data "C:\Path to game\txts;txts/" --add-data "C:Path to game\imgs;imgs/" --add-data "C:Path to game\sfxs;sfxs/"  "C:Path to game\main.py"
