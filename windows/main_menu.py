@@ -2,12 +2,10 @@ import pygame as pg
 import os
 from utils.draw_text import draw_text
 from utils.database_logic import GetHighScore, SetGamestate, SetHat, SetChar, manualSetHighScore, SelectedChar, Hat
+import time
 
 
-''' Main menu screen with buttons to shop, character selection, highscore and start game.
-    Missing functionality:
-    - Buy hat
-    - character selection functionality'''
+''' Main menu screen with buttons to shop, character selection, highscore and start game.'''
 class Main_menu():
     def __init__(self):
         self.WIDTH = 480
@@ -87,47 +85,68 @@ class Main_menu():
         shop_screen = True
         hat_image = pg.image.load(os.path.join(self.img_folder_path, "hat1.png")).convert_alpha()
         self.hat_status = 0
+        pressed = False
         while shop_screen:
             self.screen.fill(self.LIGHTBLUE)
             self.screen.blit(hat_image, (self.WIDTH / 2 - 100, self.HEIGHT / 2))
-            draw_text(self.screen, "Shop, hat costs 20", 50, self.WIDTH / 2, self.HEIGHT / 4)
+            draw_text(self.screen, "Shop", 50, self.WIDTH / 2, self.HEIGHT / 4 - 70)
+            draw_text(self.screen, "Hat costs 20", 22, self.WIDTH / 2, self.HEIGHT / 4 + 20)
             draw_text(self.screen, f"Coins: {GetHighScore()}", 22, self.WIDTH / 2, self.HEIGHT / 2 - 50)
-            draw_text(self.screen, "Buy hat", 22, self.WIDTH / 2, self.HEIGHT / 2 - 10)
             draw_text(self.screen, "Press ESC to return", 22, self.WIDTH / 2, self.HEIGHT * 0.8)
-            if self.hat_status == 1:
-                draw_text(self.screen, "You bought a red hat!", 22, self.WIDTH / 2, self.HEIGHT / 2 + 50)
-            if self.hat_status == 2:
-                draw_text(self.screen, "You don't have enough coins!", 22, self.WIDTH / 2, self.HEIGHT / 2 + 50)
-            if self.hat_status == 3:
-                draw_text(self.screen, "You already have a red hat!", 22, self.WIDTH / 2, self.HEIGHT / 2 + 50)
+            if self.hat_status == 0:
+                draw_text(self.screen, "Buy hat", 22, self.WIDTH / 2, self.HEIGHT / 2 - 10)
             for event in pg.event.get():
                 if event.type == pg.QUIT:
                     shop_screen = False
                 if event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
                     shop_screen = False
-                if event.type == pg.MOUSEBUTTONDOWN:
+                if event.type == pg.MOUSEBUTTONDOWN and not pressed:
                     mouse_pos = pg.mouse.get_pos()
                     if self.buy_button.collidepoint(mouse_pos):
+                        pressed = True
                         self.buy()
+
+                if event.type == pg.MOUSEBUTTONUP:
+                    pressed = False
             
             self.buy_button = pg.Rect(self.WIDTH / 2 - 50, self.HEIGHT / 2 - 10, 100, 30)
-            pg.draw.rect(self.screen, self.BLACK, self.buy_button, 2)
+            if not pressed:
+                pg.draw.rect(self.screen, self.BLACK, self.buy_button, 2)
+                if self.hat_status == 1:
+                    draw_text(self.screen, f"You bought a red hat!", 22, self.WIDTH / 2, self.HEIGHT / 2 + 50)
+                    draw_text(self.screen, "Buy hat", 22, self.WIDTH / 2, self.HEIGHT / 2 - 10)
+                if self.hat_status == 2:
+                    draw_text(self.screen, f"You don't have enough coins!", 22, self.WIDTH / 2, self.HEIGHT / 2 + 50)
+                    draw_text(self.screen, "Buy hat", 22, self.WIDTH / 2, self.HEIGHT / 2 - 10)
+                if self.hat_status == 3:
+                    draw_text(self.screen, f"You bought a red hat!", 22, self.WIDTH / 2, self.HEIGHT / 2 + 50)
+                    draw_text(self.screen, "Buy hat", 22, self.WIDTH / 2, self.HEIGHT / 2 - 10)
+            if pressed:
+                pg.draw.rect(self.screen, self.BLUE, self.buy_button)
+                if self.hat_status == 1:
+                    draw_text(self.screen, f"You bought a red hat!", 22, self.WIDTH / 2, self.HEIGHT / 2 + 50)
+                    draw_text(self.screen, "Buy hat", 22, self.WIDTH / 2, self.HEIGHT / 2 - 10)
+                if self.hat_status == 2:
+                    draw_text(self.screen, f"You don't have enough coins!", 22, self.WIDTH / 2, self.HEIGHT / 2 + 50)
+                    draw_text(self.screen, "Buy hat", 22, self.WIDTH / 2, self.HEIGHT / 2 - 10)
+                if self.hat_status == 3:
+                    draw_text(self.screen, f"You bought a red hat!", 22, self.WIDTH / 2, self.HEIGHT / 2 + 50)
+                    draw_text(self.screen, "Buy hat", 22, self.WIDTH / 2, self.HEIGHT / 2 - 10)
+
+
 
             pg.display.flip()
 
     def buy(self):
-        # This function is not implemented, but should be implemented to buy hats
-        # Implemented with database logic and hat blit should be added to player class
-        pass
-        '''
-        if GetHighScore() >= 20 and Hat() != "red":
-            SetHighScore(GetHighScore() - 20)
+        if GetHighScore() >= 20 and Hat() != "hat":
+            manualSetHighScore(max(GetHighScore() - 20, 0))
             self.hat_status = 1
-            SetHat("red")
+            SetHat("hat")
+
         if GetHighScore() < 20:
             self.hat_status = 2
-        if Hat() == "red":
-            self.hat_status = 3'''
+        else:
+            self.hat_status = 3
 
     def show_character_selection(self):
         # Create character selection screen
@@ -135,9 +154,9 @@ class Main_menu():
         # Functionality not implemented in player class
 
         hat_image = pg.image.load(os.path.join(self.img_folder_path, "hat1.png")).convert_alpha()
-        normal_image = pg.image.load(os.path.join(self.img_folder_path, "char4.png")).convert_alpha()
+        normal_image = pg.image.load(os.path.join(self.img_folder_path, "IdleL2.png")).convert_alpha()
         hat_character = normal_image.copy()
-        hat_character.blit(hat_image, (0, 0))
+        hat_character.blit(hat_image, (0, -8))
 
         character_screen = True
         while character_screen:
@@ -178,9 +197,10 @@ class Main_menu():
                     character_screen = False
                 if event.type == pg.MOUSEBUTTONDOWN:
                     mouse_pos = pg.mouse.get_pos()
-                    if self.hat_button.collidepoint(mouse_pos) and Hat() == "red":
+                    if self.hat_button.collidepoint(mouse_pos) and Hat() == "hat":
                         SetChar("1")
                     if self.normal_button.collidepoint(mouse_pos):
                         SetChar("0")
 
             pg.display.flip()
+
