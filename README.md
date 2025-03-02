@@ -1,16 +1,16 @@
 # Skybound
-![Skybound Logo](imgs/Idle2.png)
+![Skybound Logo](imgs/IdleL2.png)
 ![Skybound Logo](imgs/sky2.png)
 ## A 2d platformer OOP game with:
-- State management, different screens.
-- Animations, sfxs.
+- State management and different screens (Menu, start, game, pause, gameover...).
+- Fluid animations Using a spritesheet with JSON metadata
+- Different background music based on gamestates.
 - NPC monster with simple AI
 - Infinite, random level creation.
-- A shop, different characters
-- A simple database for storing highscore, player selection, 
-with homemade API functionality.
+- A shop with coin systems and different characters
+- A simple database for storing highscore, player selection, etc with homemade API functionality.
 - 46 MB executable with pyinstaller instructions
-- Documented according to PEP-8 (ish).
+- Documented according to PEP-8 (ish) and well structured.
 
 ## Works on Windows, Mac, Linux, Android
 
