@@ -1,6 +1,7 @@
 import pygame as pg
 import os
-from sprites.player import Player
+# from sprites.player import Player
+from sprites.Player import Player
 from sprites.platform import Platform2
 from sprites.goal import Goal
 from sprites.mob import Mob
@@ -21,12 +22,12 @@ class LevelClass():
         self.HEIGHT = 600
         self.skys = [
         pg.image.load(os.path.join(self.img_folder_path, 'sky2.png')).convert_alpha(),
-        pg.image.load(os.path.join(self.img_folder_path, 'Freesky1.png')).convert_alpha(),
+        pg.image.load(os.path.join(self.img_folder_path, 'Freesky5.png')).convert_alpha(),
         pg.image.load(os.path.join(self.img_folder_path, 'Freesky2.png')).convert_alpha(),
         pg.image.load(os.path.join(self.img_folder_path, 'Freesky3.png')).convert_alpha(),
         pg.image.load(os.path.join(self.img_folder_path, 'Freesky4.png')).convert_alpha(),
-        pg.image.load(os.path.join(self.img_folder_path, 'Freesky5.png')).convert_alpha(),
-        pg.image.load(os.path.join(self.img_folder_path, 'Freesky6.png')).convert_alpha(),
+        pg.image.load(os.path.join(self.img_folder_path, 'Freesky14.png')).convert_alpha(),
+        pg.image.load(os.path.join(self.img_folder_path, 'Freesky15.png')).convert_alpha(),
         pg.image.load(os.path.join(self.img_folder_path, 'Freesky7.png')).convert_alpha(),
         pg.image.load(os.path.join(self.img_folder_path, 'Freesky8.png')).convert_alpha(),
         ]
