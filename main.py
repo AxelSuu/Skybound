@@ -25,9 +25,9 @@ class Main_Loop:
         pg.init()
         pg.mixer.init()
         self.pause_music = False
-        self.gamesound = os.path.join(self.sfx_folder_path, 'music5.mp3')
-        self.menusound = os.path.join(self.sfx_folder_path, 'music7.mp3')
-        self.highscoresound = os.path.join(self.sfx_folder_path, 'music1.mp3')
+        self.gamesound = os.path.join(self.sfx_folder_path, 'music5.ogg')
+        self.menusound = os.path.join(self.sfx_folder_path, 'music7.ogg')
+        self.highscoresound = os.path.join(self.sfx_folder_path, 'music1.ogg')
         self.channel1 = pg.mixer.Channel(0)
         self.channel2 = pg.mixer.Channel(1)
         self.channel3 = pg.mixer.Channel(2)
