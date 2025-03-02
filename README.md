@@ -24,4 +24,10 @@ with homemade API functionality.
 
 ## Build instructions for pyinstaller (only 46MB!):
 
+1. Pip install Pyinstaller
+
+2. Modify the Pyinstaller script for your Path
+
+3. Run the script: 
+
 pyinstaller --noconfirm --onefile --windowed --optimize "1" --icon "C:Path to game\icon.ico" --name "Skybound4" --add-data "C:Path to game\font;font/" --add-data "C:\Path to game\txts;txts/" --add-data "C:Path to game\imgs;imgs/" --add-data "C:Path to game\sfxs;sfxs/"  "C:Path to game\main.py"
