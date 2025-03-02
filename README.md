@@ -4,12 +4,15 @@
 ## A 2d platformer OOP game with:
 - State management, different screens.
 - Animations, sfxs.
-- NPC monster with simple AI and infinite, random level creation.
+- NPC monster with simple AI
+- Infinite, random level creation.
 - A shop, different characters
 - A simple database for storing highscore, player selection, 
 with homemade API functionality.
 - 46 MB executable with pyinstaller instructions
 - Documented according to PEP-8 (ish).
+
+## Works on Windows, Mac, Linux, Android
 
 ## Missing functionality:
 - Parallaxing background + Background shaders
