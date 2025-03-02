@@ -1,5 +1,7 @@
 import pygame as pg
 import os
+from utils.spritesheet import Spritesheet
+from utils.database_logic import Hat
 
 class Player(pg.sprite.Sprite):
     """Player class to handle player movement, animations, and interactions."""
@@ -8,6 +10,11 @@ class Player(pg.sprite.Sprite):
         """Initialize the player with default settings and load frames."""
 
         pg.sprite.Sprite.__init__(self)
+        self.img_folder_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "imgs"))
+        self.hat = Hat()
+        self.hat_image1 = pg.image.load(os.path.join(self.img_folder_path, "hat1.png")).convert_alpha()
+        self.hat_image2 = pg.image.load(os.path.join(self.img_folder_path, "hat2.png")).convert_alpha()
+        self.startframe = pg.image.load(os.path.join(self.img_folder_path, "IdleL2.png")).convert_alpha()
         self.jumping, self.falling = False, False
         self.frame_index = 0  # Track animation frame
         self.animation_timer = 0  # Track time for animation
@@ -21,33 +28,15 @@ class Player(pg.sprite.Sprite):
         self.PLAYER_ACC = 0.5 # Player acceleration
         self.PLAYER_FRICTION = -0.12 # Player friction
 
-        # Loading player frames for animations
-        self.idle_left_frames = [
-            pg.image.load(os.path.join(self.img_folder_path, 'char4.png')).convert_alpha(),
-            pg.image.load(os.path.join(self.img_folder_path, 'char4_3.png')).convert_alpha()]
-        self.idle_right_frames = [
-            pg.image.load(os.path.join(self.img_folder_path, 'char5.png')).convert_alpha(),
-            pg.image.load(os.path.join(self.img_folder_path, 'char4_6.png')).convert_alpha()]
-        self.walk_left_frames = [
-            pg.image.load(os.path.join(self.img_folder_path, 'char4_1.png')).convert_alpha(),
-            pg.image.load(os.path.join(self.img_folder_path, 'char4_4.png')).convert_alpha(),
-            pg.image.load(os.path.join(self.img_folder_path, 'char4_2.png')).convert_alpha(),
-            pg.image.load(os.path.join(self.img_folder_path, 'char4_5.png')).convert_alpha()]
-        self.walk_right_frames = [
-            pg.image.load(os.path.join(self.img_folder_path, 'char5_1.png')).convert_alpha(),
-            pg.image.load(os.path.join(self.img_folder_path, 'char4_7.png')).convert_alpha(),
-            pg.image.load(os.path.join(self.img_folder_path, 'char5_2.png')).convert_alpha(),
-            pg.image.load(os.path.join(self.img_folder_path, 'char4_8.png')).convert_alpha()]
-        self.jumping_left_frames = [
-            pg.image.load(os.path.join(self.img_folder_path, 'falling.png')).convert_alpha()]
-        self.jumping_right_frames = [
-            pg.image.load(os.path.join(self.img_folder_path, 'jumping_r.png')).convert_alpha()]
-        self.falling_left_frames = [
-            pg.image.load(os.path.join(self.img_folder_path, 'jumping.png')).convert_alpha()]
-        self.falling_right_frames = [
-            pg.image.load(os.path.join(self.img_folder_path, 'falling_r.png')).convert_alpha()]
+        # Load the spritesheet
+        self.spritesheet = Spritesheet('Playersheet.png')
+
+        if self.hat == "0":
+            self.load_character()
+        if self.hat == "hat":
+            self.load_hat_character()
         
-        self.image = self.idle_left_frames[0]  # Start with the first frame
+        self.image = self.startframe  # Start with the first frame
 
         self.rect = self.image.get_rect() # Set the rect attribute for collision detection
         self.rect.center = (30, self.HEIGHT * 3/4) # Create center rect object
@@ -57,7 +46,6 @@ class Player(pg.sprite.Sprite):
 
         # Create hitbox for collision detection
         self.hitbox = pg.Rect(self.rect.left + 10, self.rect.top + 7, self.rect.width - 26, self.rect.height - 7)
-
 
     def update(self):
         """Update the player's position, state, and animations."""
@@ -112,7 +100,6 @@ class Player(pg.sprite.Sprite):
         # Update hitbox position
         self.hitbox.topleft = (self.rect.left + 10, self.rect.top + 7)
 
-
     def animate(self):
         """Handle player animations based on the current state."""
 
@@ -150,3 +137,57 @@ class Player(pg.sprite.Sprite):
                 self.image = self.falling_left_frames[0]
             else:
                 self.image = self.falling_right_frames[0]
+
+
+        
+    def load_character(self):
+        """Load the character frames for the player without a hat."""
+
+        self.idle_left_frames = [self.spritesheet.parse_sprite('idlel1.png'), self.spritesheet.parse_sprite('idlel2.png')]
+        self.idle_right_frames = [self.spritesheet.parse_sprite('idler1.png'), self.spritesheet.parse_sprite('idler2.png')]
+        self.walk_left_frames = [self.spritesheet.parse_sprite('wl1.png'), self.spritesheet.parse_sprite('wl2.png'),
+                                 self.spritesheet.parse_sprite('wl3.png'), self.spritesheet.parse_sprite('wl4.png')]
+        self.walk_right_frames = [self.spritesheet.parse_sprite('wr1.png'), self.spritesheet.parse_sprite('wr2.png'),
+                                  self.spritesheet.parse_sprite('wr3.png'), self.spritesheet.parse_sprite('wr4.png')]
+        self.jumping_left_frames = [self.spritesheet.parse_sprite('jumpingl.png')]
+        self.jumping_right_frames = [self.spritesheet.parse_sprite('jumpingr.png')]
+        self.falling_left_frames = [self.spritesheet.parse_sprite('fallingl.png')]
+        self.falling_right_frames = [self.spritesheet.parse_sprite('fallingr.png')]
+
+    def load_hat_character(self):
+        """Load the character frames for the player with a hat."""
+
+        self.idle_left_frames = [self.spritesheet.parse_sprite('idlel1.png'), self.spritesheet.parse_sprite('idlel2.png')]
+        self.idle_right_frames = [self.spritesheet.parse_sprite('idler1.png'), self.spritesheet.parse_sprite('idler2.png')]
+        self.walk_left_frames = [self.spritesheet.parse_sprite('wl1.png'), self.spritesheet.parse_sprite('wl2.png'),
+                                 self.spritesheet.parse_sprite('wl3.png'), self.spritesheet.parse_sprite('wl4.png')]
+        self.walk_right_frames = [self.spritesheet.parse_sprite('wr1.png'), self.spritesheet.parse_sprite('wr2.png'),
+                                  self.spritesheet.parse_sprite('wr3.png'), self.spritesheet.parse_sprite('wr4.png')]
+        self.jumping_left_frames = [self.spritesheet.parse_sprite('jumpingl.png')]
+        self.jumping_right_frames = [self.spritesheet.parse_sprite('jumpingr.png')]
+        self.falling_left_frames = [self.spritesheet.parse_sprite('fallingl.png')]
+        self.falling_right_frames = [self.spritesheet.parse_sprite('fallingr.png')]
+
+        for frame in self.idle_left_frames:
+            frame.blit(self.hat_image1, (0, -8))
+
+        for frame in self.idle_right_frames:
+            frame.blit(self.hat_image1, (10, -8))
+
+        for frame in self.walk_left_frames:
+            frame.blit(self.hat_image1, (0, -8))
+
+        for frame in self.walk_right_frames:
+            frame.blit(self.hat_image1, (10, -8))
+
+        for frame in self.jumping_left_frames:
+            frame.blit(self.hat_image1, (0, -8))
+
+        for frame in self.jumping_right_frames:
+            frame.blit(self.hat_image1, (10, -8))
+
+        for frame in self.falling_left_frames:
+            frame.blit(self.hat_image1, (0, -8))
+
+        for frame in self.falling_right_frames:
+            frame.blit(self.hat_image1, (10, -8))
