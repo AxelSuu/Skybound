@@ -1,7 +1,7 @@
-# Skybound
+# Skybound / Pygame
 ![Skybound Logo](imgs/IdleL2.png)
 ![Skybound Logo](imgs/sky2.png)
-## A 2d platformer OOP game with:
+## A 2d platformer OOP game written in Pygame with:
 - State management and different screens (Menu, start, game, pause, gameover...).
 - Fluid animations Using a spritesheet with JSON metadata
 - Different background music based on gamestates.
