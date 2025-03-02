@@ -22,7 +22,11 @@
 [Background images](https://craftpix.net/freebies/free-sky-with-clouds-background-pixel-art-set/)
 
 
-## Build instructions for pyinstaller (only 46MB!):
+## You can run the game by running main.py if you have the dependecies
+- Python 3
+- Pygame
+
+## Build instructions for pyinstaller to create exe file (only 46MB!):
 
 1. Pip install Pyinstaller and Pygame
 
