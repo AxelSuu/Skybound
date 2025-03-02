@@ -142,11 +142,10 @@ class Main_menu():
             manualSetHighScore(max(GetHighScore() - 20, 0))
             self.hat_status = 1
             SetHat("hat")
-
-        if GetHighScore() < 20:
-            self.hat_status = 2
-        else:
+        elif Hat() == "hat":
             self.hat_status = 3
+        elif GetHighScore() < 20:
+            self.hat_status = 2
 
     def show_character_selection(self):
         # Create character selection screen, talks with txt files
