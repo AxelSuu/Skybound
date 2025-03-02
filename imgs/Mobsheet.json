@@ -1,0 +1,37 @@
+{
+  "sprites": {
+    "midle1.png":
+    {
+      "width": 60,
+      "height": 80,
+      "x": 0,
+      "y": 0
+    },
+    "midle2.png":
+    {
+      "width": 60,
+      "height": 80,
+      "x": 60,
+      "y": 0
+    },
+    "mw1.png":
+    {
+      "width": 60,
+      "height": 80,
+      "x": 0,
+      "y": 80
+    },
+    "mw2.png":
+    {
+      "width": 60,
+      "height": 80,
+      "x": 60,
+      "y": 80
+    }
+  },
+  "meta": {
+    "image": "Mobsheet.png",
+    "size": {"w": 120, "h": 160},
+    "scale": 1
+  }
+}
