@@ -1,0 +1,121 @@
+{
+  "sprites": {
+    "idlel1.png":
+    {
+      "width": 50,
+      "height": 67,
+      "x": 100,
+      "y": 0
+    },
+    "idlel2.png":
+    {
+      "width": 50,
+      "height": 67,
+      "x": 150,
+      "y": 0
+    },
+    "idler1.png":
+    {
+      "width": 50,
+      "height": 67,
+      "x": 0,
+      "y": 67
+    },
+    "idler2.png":
+    {
+      "width": 50,
+      "height": 67,
+      "x": 50,
+      "y": 67
+    },
+    "wl1.png":
+    {
+      "width": 50,
+      "height": 67,
+      "x": 0,
+      "y": 134
+    },
+    "wl2.png":
+    {
+      "width": 50,
+      "height": 67,
+      "x": 50,
+      "y": 134
+    },
+    "wl3.png":
+    {
+      "width": 50,
+      "height": 67,
+      "x": 100,
+      "y": 134
+    },
+    "wl4.png":
+    {
+      "width": 50,
+      "height": 67,
+      "x": 150,
+      "y": 134
+    },
+    "wr1.png":
+    {
+      "width": 50,
+      "height": 67,
+      "x": 0,
+      "y": 201
+    },
+    "wr2.png":
+    {
+      "width": 50,
+      "height": 67,
+      "x": 50,
+      "y": 201
+    },
+    "wr3.png":
+    {
+      "width": 50,
+      "height": 67,
+      "x": 100,
+      "y": 201
+    },
+    "wr4.png":
+    {
+      "width": 50,
+      "height": 67,
+      "x": 150,
+      "y": 201
+    },
+    "fallingl.png":
+    {
+      "width": 50,
+      "height": 67,
+      "x": 0,
+      "y": 0
+    },
+    "jumpingl.png":
+    {
+      "width": 50,
+      "height": 67,
+      "x": 100,
+      "y": 67
+    },
+    "fallingr.png":
+    {
+      "width": 50,
+      "height": 67,
+      "x": 50,
+      "y": 0
+    },
+    "jumpingr.png":
+    {
+      "width": 50,
+      "height": 67,
+      "x": 150,
+      "y": 67
+    }
+  },
+  "meta": {
+    "image" : "Playersheet.png",
+    "size" : {"w": 200, "h": 268},
+    "scale": 1
+  }
+}
