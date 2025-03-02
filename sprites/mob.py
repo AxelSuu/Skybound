@@ -1,5 +1,6 @@
 import pygame as pg
 import os
+from utils.spritesheet import Spritesheet
 
 ''' Class for mob sprite, using pg.sprite.Sprite
     Very based on player sprite'''
@@ -11,18 +12,24 @@ class Mob(pg.sprite.Sprite):
         self.WIDTH = 480
         self.MOB_ACC = 0.5
         self.MOB_FRICTION = -0.12
+
+        # Load the spritesheet
+        self.spritesheet = Spritesheet('Mobsheet.png')
+
+        # Loading mob frames for animations
         self.walk_frames = [
-            pg.image.load(os.path.join(self.img_folder_path, 'Mob3 - kopia.png')).convert_alpha(),
-            pg.image.load(os.path.join(self.img_folder_path, 'Mob3_1.png')).convert_alpha(),
-            pg.image.load(os.path.join(self.img_folder_path, 'Mob3.png')).convert_alpha(),
-            pg.image.load(os.path.join(self.img_folder_path, 'Mob3_3.png')).convert_alpha()
-        ]
+            self.spritesheet.parse_sprite('midle1.png'),
+            self.spritesheet.parse_sprite('mw1.png'),
+            self.spritesheet.parse_sprite('midle2.png'),
+            self.spritesheet.parse_sprite('mw2.png')
+            ]
+        
         self.image = self.walk_frames[0]  # Start with the first frame
         self.frame_index = 0  # Track animation frame
         self.animation_timer = 0  # Track time for animation
 
         self.rect = self.image.get_rect()
-        self.rect.center = (440, self.HEIGHT * 3/4 +10)
+        self.rect.center = (440, self.HEIGHT * 3/4 + 10)
         self.pos = pg.Vector2(self.rect.center)
         self.vel = pg.Vector2(0, 0)
         self.acc = pg.Vector2(0, 0)
@@ -33,11 +40,9 @@ class Mob(pg.sprite.Sprite):
     def update(self):
         self.acc = pg.Vector2(0, self.MOB_ACC)
         
-        
         self.animation_timer += 2
 
-        if self.animation_timer % 10 == 0:
-
+        if self.animation_timer % 20 == 0:
             self.frame_index = (self.frame_index + 1) % len(self.walk_frames)
             self.image = self.walk_frames[self.frame_index]
 
