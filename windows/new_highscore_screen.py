@@ -28,7 +28,7 @@ class NewHighscore:
                 self.background2 = pg.transform.flip(self.background2, True, False).convert()
             self.screen.blit(self.background, (480 - self.background.get_width() + self.bg_scroll, 0))
             if self.bg_scroll > self.background.get_width() - 480:
-                self.screen.blit(self.background2, (480 - self.background.get_width()*2 + self.bg_scroll, 0))
+                self.screen.blit(self.background2, (480 -self.background.get_width()*2 + self.bg_scroll, 0))
 
             draw_text(self.screen, f"Press V to play Level {GetScore()}", 22, self.WIDTH / 2, self.HEIGHT * 2 / 4) # {Loop.levelcounter}
             draw_text(self.screen, "Press Q to go to Main Menu", 22, self.WIDTH / 2, self.HEIGHT * 3 / 4)
