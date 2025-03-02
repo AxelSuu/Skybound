@@ -1,7 +1,7 @@
 import pygame as pg
 import os
 # from sprites.player import Player
-from sprites.Player import Player
+from sprites.player import Player
 from sprites.platform import Platform2
 from sprites.goal import Goal
 from sprites.mob import Mob
