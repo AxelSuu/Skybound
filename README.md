@@ -24,7 +24,7 @@
 
 ## Build instructions for pyinstaller (only 46MB!):
 
-1. Pip install Pyinstaller
+1. Pip install Pyinstaller and Pygame
 
 2. Modify the Pyinstaller script for your Path: "C:Path to game"
 
