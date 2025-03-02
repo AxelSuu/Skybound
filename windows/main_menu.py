@@ -80,8 +80,7 @@ class Main_menu():
             pg.display.flip()
 
     def show_shop(self):
-        # Create shop screen, should maybe be its own class
-        # Functionality not implemented
+        # Create shop screen, ability to buy a hat, talks with txt files
         shop_screen = True
         hat_image = pg.image.load(os.path.join(self.img_folder_path, "hat1.png")).convert_alpha()
         self.hat_status = 0
@@ -138,6 +137,7 @@ class Main_menu():
             pg.display.flip()
 
     def buy(self):
+        # Logic for buying a hat
         if GetHighScore() >= 20 and Hat() != "hat":
             manualSetHighScore(max(GetHighScore() - 20, 0))
             self.hat_status = 1
@@ -149,9 +149,7 @@ class Main_menu():
             self.hat_status = 3
 
     def show_character_selection(self):
-        # Create character selection screen
-        # Should maybe be its own class
-        # Functionality not implemented in player class
+        # Create character selection screen, talks with txt files
 
         hat_image = pg.image.load(os.path.join(self.img_folder_path, "hat1.png")).convert_alpha()
         normal_image = pg.image.load(os.path.join(self.img_folder_path, "IdleL2.png")).convert_alpha()
@@ -164,10 +162,11 @@ class Main_menu():
             draw_text(self.screen, "Character Selection", 50, self.WIDTH / 2, self.HEIGHT / 4)
             draw_text(self.screen, "Press ESC to return", 22, self.WIDTH / 2, self.HEIGHT * 0.8)
 
-            # Draw buttons
+            # Draw untouched buttons
             self.hat_button = pg.Rect(self.WIDTH / 2 - 50, self.HEIGHT / 2 - 10, 100, 30)
             self.normal_button = pg.Rect(self.WIDTH / 2 - 50, self.HEIGHT / 2 + 40, 100, 30)
 
+            # Logic for drawing touched buttons
             selected_char = SelectedChar()
             if selected_char == 0:
                 pg.draw.rect(self.screen, self.BLUE, self.normal_button)
@@ -189,7 +188,7 @@ class Main_menu():
                 draw_text(self.screen, "Normal", 22, self.WIDTH / 2, self.HEIGHT / 2 + 40)
                 draw_text(self.screen, "Hat", 22, self.WIDTH / 2, self.HEIGHT / 2 - 10)
 
-
+            # event handler
             for event in pg.event.get():
                 if event.type == pg.QUIT:
                     character_screen = False
