@@ -18,7 +18,7 @@ class Start:
         self.start_screen()
 
     def start_screen(self):
-
+        
         # This block is for a cool start screen dev message
         self.screen.fill(self.LIGHTBLUE)
         text = string.ascii_letters+" "+"!" + "/"
@@ -36,7 +36,7 @@ class Start:
                     break
                 time.sleep(0.001)
             time.sleep(0.5)
-        time.sleep(2)
+        time.sleep(1)
 
         # The actual start screen loop
         while self.OnstartScreen:
