@@ -26,8 +26,10 @@
 
 1. Pip install Pyinstaller
 
-2. Modify the Pyinstaller script for your Path
+2. Modify the Pyinstaller script for your Path: "C:Path to game"
 
 3. Run the script: 
 
-pyinstaller --noconfirm --onefile --windowed --optimize "1" --icon "C:Path to game\icon.ico" --name "Skybound4" --add-data "C:Path to game\font;font/" --add-data "C:\Path to game\txts;txts/" --add-data "C:Path to game\imgs;imgs/" --add-data "C:Path to game\sfxs;sfxs/"  "C:Path to game\main.py"
+pyinstaller --noconfirm --onefile --windowed --optimize "1" --icon "C:Path to game\Skybound\icon.ico" --name "Skybound4" --add-data "C:Path to game\Skybound\font;font/" --add-data "C:\Path to game\Skybound\txts;txts/" --add-data "C:Path to game\Skybound\imgs;imgs/" --add-data "C:Path to game\Skybound\sfxs;sfxs/"  "C:Path to game\Skybound\main.py"
+
+4. Output will be in a dist folder, with build data in a build folder
