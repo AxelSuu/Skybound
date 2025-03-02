@@ -9,6 +9,7 @@ from windows.paus import Pause
     runs the game loop. '''
 class Loop():
     def __init__(self, main):
+
         # initialize game window, etc
         self.main = main
         self.WIDTH = 480
@@ -35,6 +36,7 @@ class Loop():
         elif GetLevel() > 1: # Database logic example
             self.level.level2()
         self.background = self.level.sky
+        self.background2 = pg.transform.flip(self.background, True, False).convert()
 
         # Game Loop
         self.run()
@@ -107,9 +109,13 @@ class Loop():
             # Game Loop - draw
             self.screen.fill(self.WHITE)
             self.bg_scroll += 1.5
-            if self.bg_scroll >= self.background.get_width() - 480:
+            if self.bg_scroll >= self.background.get_width():
                 self.bg_scroll = 0
+                self.background = pg.transform.flip(self.background, True, False).convert()
+                self.background2 = pg.transform.flip(self.background2, True, False).convert()
             self.screen.blit(self.background, (480 - self.background.get_width() + self.bg_scroll, 0))
+            if self.bg_scroll > self.background.get_width() - 480:
+                self.screen.blit(self.background2, (480 -self.background.get_width()*2 + self.bg_scroll, 0))
             self.all_sprites.draw(self.screen)
 
             # *after* drawing everything, flip the display
