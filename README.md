@@ -1,5 +1,5 @@
 # Skybound
-![Skybound Logo](imgs/char5.png)![Skybound Logo](imgs/char4_7.png)![Skybound Logo](imgs/char5_2.png)![Skybound Logo](imgs/jumping_r.png)![Skybound Logo](imgs/Mob3.png)
+![Skybound Logo](imgs/Idle2.png)
 ![Skybound Logo](imgs/sky2.png)
 ## A 2d platformer OOP game with:
 - State management, different screens.
