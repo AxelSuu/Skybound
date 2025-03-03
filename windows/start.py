@@ -1,6 +1,6 @@
 import pygame as pg
 from utils.draw_text import draw_text
-from utils.database_logic import GetHighScore, SetGamestate, SetScore, SetLevel, Getscore
+from utils.database_logic import GetHighScore, SetGamestate, SetScore, SetLevel, GetScore
 
 import string
 import time
@@ -20,7 +20,7 @@ class Start:
     def start_screen(self):
         
         # This block is for a cool start screen dev message
-        if Getscore() == 1:
+        if GetScore() == 1:
             self.screen.fill(self.LIGHTBLUE)
             text = string.ascii_letters+" "+"!" + "/"
             target = "Hello /Axel S"
