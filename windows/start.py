@@ -1,6 +1,6 @@
 import pygame as pg
 from utils.draw_text import draw_text
-from utils.database_logic import GetHighScore, SetGamestate, SetScore, SetLevel
+from utils.database_logic import GetHighScore, SetGamestate, SetScore, SetLevel, Getscore
 
 import string
 import time
@@ -20,23 +20,24 @@ class Start:
     def start_screen(self):
         
         # This block is for a cool start screen dev message
-        self.screen.fill(self.LIGHTBLUE)
-        text = string.ascii_letters+" "+"!" + "/"
-        target = "Hello /Axel S"
-        result = ""
-        for letter in target:
-            while True:
-                I = random.choice(text)
-                self.screen.fill(self.LIGHTBLUE)
-                time.sleep(0.01)
-                draw_text(self.screen, result + I, 50, self.WIDTH / 2, self.HEIGHT / 4)
-                pg.display.flip()
-                if (I == letter):
-                    result += I
-                    break
+        if Getscore() == 1:
+            self.screen.fill(self.LIGHTBLUE)
+            text = string.ascii_letters+" "+"!" + "/"
+            target = "Hello /Axel S"
+            result = ""
+            for letter in target:
+                while True:
+                    I = random.choice(text)
+                    self.screen.fill(self.LIGHTBLUE)
+                    time.sleep(0.01)
+                    draw_text(self.screen, result + I, 50, self.WIDTH / 2, self.HEIGHT / 4)
+                    pg.display.flip()
+                    if (I == letter):
+                        result += I
+                        break
+                    time.sleep(0.001)
                 time.sleep(0.001)
-            time.sleep(0.5)
-        time.sleep(1)
+            time.sleep(1)
 
         # The actual start screen loop
         while self.OnstartScreen:
