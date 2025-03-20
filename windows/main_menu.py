@@ -1,12 +1,22 @@
 import pygame as pg
 import os
 from utils.draw_text import draw_text
-from utils.database_logic import GetHighScore, SetGamestate, SetHat, SetChar, manualSetHighScore, SelectedChar, Hat
+from utils.database_logic import (
+    GetHighScore,
+    SetGamestate,
+    SetHat,
+    SetChar,
+    manualSetHighScore,
+    SelectedChar,
+    Hat,
+)
 import time
 
 
-''' Main menu screen with buttons to shop, character selection, highscore and start game.'''
-class Main_menu():
+""" Main menu screen with buttons to shop, character selection, highscore and start game."""
+
+
+class Main_menu:
     def __init__(self):
         self.WIDTH = 480
         self.HEIGHT = 600
@@ -15,13 +25,17 @@ class Main_menu():
         self.LIGHTBLUE = (135, 206, 235)
         self.BLUE = (0, 0, 255)
         self.TITLE = "Skybound"
-        self.img_folder_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "imgs"))
+        self.img_folder_path = os.path.abspath(
+            os.path.join(os.path.dirname(__file__), "..", "imgs")
+        )
 
         self.screen = pg.display.set_mode((self.WIDTH, self.HEIGHT))
         pg.display.set_caption(self.TITLE)
-        icon = pg.image.load(os.path.join(self.img_folder_path, 'icon.png'))
+        icon = pg.image.load(os.path.join(self.img_folder_path, "icon.png"))
         self.bg_scroll = 0
-        self.background = pg.image.load(os.path.join(self.img_folder_path, 'Sky2.png')).convert()
+        self.background = pg.image.load(
+            os.path.join(self.img_folder_path, "Sky2.png")
+        ).convert()
         self.background2 = pg.transform.flip(self.background, True, False).convert()
         pg.display.set_icon(icon)
         self.main_menu()
@@ -35,20 +49,43 @@ class Main_menu():
             self.bg_scroll += 0.5
             if self.bg_scroll >= self.background.get_width():
                 self.bg_scroll = 0
-                self.background = pg.transform.flip(self.background, True, False).convert()
-                self.background2 = pg.transform.flip(self.background2, True, False).convert()
-            self.screen.blit(self.background, (480 - self.background.get_width() + self.bg_scroll, 0))
+                self.background = pg.transform.flip(
+                    self.background, True, False
+                ).convert()
+                self.background2 = pg.transform.flip(
+                    self.background2, True, False
+                ).convert()
+            self.screen.blit(
+                self.background, (480 - self.background.get_width() + self.bg_scroll, 0)
+            )
             if self.bg_scroll > self.background.get_width() - 480:
-                self.screen.blit(self.background2, (480 -self.background.get_width()*2 + self.bg_scroll, 0))
+                self.screen.blit(
+                    self.background2,
+                    (480 - self.background.get_width() * 2 + self.bg_scroll, 0),
+                )
 
             # Text block
             draw_text(self.screen, "Skybound", 50, self.WIDTH / 2, self.HEIGHT / 4)
-            draw_text(self.screen, "Press Space to play", 22, self.WIDTH / 2, self.HEIGHT / 2)
+            draw_text(
+                self.screen, "Press Space to play", 22, self.WIDTH / 2, self.HEIGHT / 2
+            )
             draw_text(self.screen, "Shop", 22, self.WIDTH / 2, self.HEIGHT * 3 / 4 - 10)
-            draw_text(self.screen, "Character Selection", 22, self.WIDTH / 2, self.HEIGHT * 3 / 4 + 40)
-            draw_text(self.screen, f"Highscore: {GetHighScore()}", 22, self.WIDTH / 2, self.HEIGHT * 3 / 4 + 100)
+            draw_text(
+                self.screen,
+                "Character Selection",
+                22,
+                self.WIDTH / 2,
+                self.HEIGHT * 3 / 4 + 40,
+            )
+            draw_text(
+                self.screen,
+                f"Highscore: {GetHighScore()}",
+                22,
+                self.WIDTH / 2,
+                self.HEIGHT * 3 / 4 + 100,
+            )
             draw_text(self.screen, "Restart", 22, self.WIDTH / 2, 40)
-        
+
             # Event handler
             for event in pg.event.get():
                 if event.type == pg.QUIT:
@@ -70,8 +107,12 @@ class Main_menu():
                 SetGamestate("START_SCREEN")
 
             # Draw buttons block
-            self.shop_button = pg.Rect(self.WIDTH / 2 - 50, self.HEIGHT * 3 / 4 - 10, 100, 30)
-            self.character_button = pg.Rect(self.WIDTH / 2 - 100, self.HEIGHT * 3 / 4 + 40, 200, 30)
+            self.shop_button = pg.Rect(
+                self.WIDTH / 2 - 50, self.HEIGHT * 3 / 4 - 10, 100, 30
+            )
+            self.character_button = pg.Rect(
+                self.WIDTH / 2 - 100, self.HEIGHT * 3 / 4 + 40, 200, 30
+            )
             self.restart_button = pg.Rect(self.WIDTH / 2 - 50, 40, 100, 30)
             pg.draw.rect(self.screen, self.BLACK, self.shop_button, 2)
             pg.draw.rect(self.screen, self.BLACK, self.character_button, 2)
@@ -82,18 +123,36 @@ class Main_menu():
     def show_shop(self):
         # Create shop screen, ability to buy a hat, talks with txt files
         shop_screen = True
-        hat_image = pg.image.load(os.path.join(self.img_folder_path, "hat1.png")).convert_alpha()
+        hat_image = pg.image.load(
+            os.path.join(self.img_folder_path, "hat1.png")
+        ).convert_alpha()
         self.hat_status = 0
         pressed = False
         while shop_screen:
             self.screen.fill(self.LIGHTBLUE)
             self.screen.blit(hat_image, (self.WIDTH / 2 - 100, self.HEIGHT / 2))
             draw_text(self.screen, "Shop", 50, self.WIDTH / 2, self.HEIGHT / 4 - 70)
-            draw_text(self.screen, "Hat costs 20", 22, self.WIDTH / 2, self.HEIGHT / 4 + 20)
-            draw_text(self.screen, f"Coins: {GetHighScore()}", 22, self.WIDTH / 2, self.HEIGHT / 2 - 50)
-            draw_text(self.screen, "Press ESC to return", 22, self.WIDTH / 2, self.HEIGHT * 0.8)
+            draw_text(
+                self.screen, "Hat costs 20", 22, self.WIDTH / 2, self.HEIGHT / 4 + 20
+            )
+            draw_text(
+                self.screen,
+                f"Coins: {GetHighScore()}",
+                22,
+                self.WIDTH / 2,
+                self.HEIGHT / 2 - 50,
+            )
+            draw_text(
+                self.screen,
+                "Press ESC to return",
+                22,
+                self.WIDTH / 2,
+                self.HEIGHT * 0.8,
+            )
             if self.hat_status == 0:
-                draw_text(self.screen, "Buy hat", 22, self.WIDTH / 2, self.HEIGHT / 2 - 10)
+                draw_text(
+                    self.screen, "Buy hat", 22, self.WIDTH / 2, self.HEIGHT / 2 - 10
+                )
             for event in pg.event.get():
                 if event.type == pg.QUIT:
                     shop_screen = False
@@ -107,32 +166,80 @@ class Main_menu():
 
                 if event.type == pg.MOUSEBUTTONUP:
                     pressed = False
-            
-            self.buy_button = pg.Rect(self.WIDTH / 2 - 50, self.HEIGHT / 2 - 10, 100, 30)
+
+            self.buy_button = pg.Rect(
+                self.WIDTH / 2 - 50, self.HEIGHT / 2 - 10, 100, 30
+            )
             if not pressed:
                 pg.draw.rect(self.screen, self.BLACK, self.buy_button, 2)
                 if self.hat_status == 1:
-                    draw_text(self.screen, f"You bought a red hat!", 22, self.WIDTH / 2, self.HEIGHT / 2 + 50)
-                    draw_text(self.screen, "Buy hat", 22, self.WIDTH / 2, self.HEIGHT / 2 - 10)
+                    draw_text(
+                        self.screen,
+                        f"You bought a red hat!",
+                        22,
+                        self.WIDTH / 2,
+                        self.HEIGHT / 2 + 50,
+                    )
+                    draw_text(
+                        self.screen, "Buy hat", 22, self.WIDTH / 2, self.HEIGHT / 2 - 10
+                    )
                 if self.hat_status == 2:
-                    draw_text(self.screen, f"You don't have enough coins!", 22, self.WIDTH / 2, self.HEIGHT / 2 + 50)
-                    draw_text(self.screen, "Buy hat", 22, self.WIDTH / 2, self.HEIGHT / 2 - 10)
+                    draw_text(
+                        self.screen,
+                        f"You don't have enough coins!",
+                        22,
+                        self.WIDTH / 2,
+                        self.HEIGHT / 2 + 50,
+                    )
+                    draw_text(
+                        self.screen, "Buy hat", 22, self.WIDTH / 2, self.HEIGHT / 2 - 10
+                    )
                 if self.hat_status == 3:
-                    draw_text(self.screen, f"You bought a red hat!", 22, self.WIDTH / 2, self.HEIGHT / 2 + 50)
-                    draw_text(self.screen, "Buy hat", 22, self.WIDTH / 2, self.HEIGHT / 2 - 10)
+                    draw_text(
+                        self.screen,
+                        f"You bought a red hat!",
+                        22,
+                        self.WIDTH / 2,
+                        self.HEIGHT / 2 + 50,
+                    )
+                    draw_text(
+                        self.screen, "Buy hat", 22, self.WIDTH / 2, self.HEIGHT / 2 - 10
+                    )
             if pressed:
                 pg.draw.rect(self.screen, self.BLUE, self.buy_button)
                 if self.hat_status == 1:
-                    draw_text(self.screen, f"You bought a red hat!", 22, self.WIDTH / 2, self.HEIGHT / 2 + 50)
-                    draw_text(self.screen, "Buy hat", 22, self.WIDTH / 2, self.HEIGHT / 2 - 10)
+                    draw_text(
+                        self.screen,
+                        f"You bought a red hat!",
+                        22,
+                        self.WIDTH / 2,
+                        self.HEIGHT / 2 + 50,
+                    )
+                    draw_text(
+                        self.screen, "Buy hat", 22, self.WIDTH / 2, self.HEIGHT / 2 - 10
+                    )
                 if self.hat_status == 2:
-                    draw_text(self.screen, f"You don't have enough coins!", 22, self.WIDTH / 2, self.HEIGHT / 2 + 50)
-                    draw_text(self.screen, "Buy hat", 22, self.WIDTH / 2, self.HEIGHT / 2 - 10)
+                    draw_text(
+                        self.screen,
+                        f"You don't have enough coins!",
+                        22,
+                        self.WIDTH / 2,
+                        self.HEIGHT / 2 + 50,
+                    )
+                    draw_text(
+                        self.screen, "Buy hat", 22, self.WIDTH / 2, self.HEIGHT / 2 - 10
+                    )
                 if self.hat_status == 3:
-                    draw_text(self.screen, f"You bought a red hat!", 22, self.WIDTH / 2, self.HEIGHT / 2 + 50)
-                    draw_text(self.screen, "Buy hat", 22, self.WIDTH / 2, self.HEIGHT / 2 - 10)
-
-
+                    draw_text(
+                        self.screen,
+                        f"You bought a red hat!",
+                        22,
+                        self.WIDTH / 2,
+                        self.HEIGHT / 2 + 50,
+                    )
+                    draw_text(
+                        self.screen, "Buy hat", 22, self.WIDTH / 2, self.HEIGHT / 2 - 10
+                    )
 
             pg.display.flip()
 
@@ -142,50 +249,75 @@ class Main_menu():
             manualSetHighScore(max(GetHighScore() - 20, 0))
             self.hat_status = 1
             SetHat("hat")
-
-        if GetHighScore() < 20:
-            self.hat_status = 2
-        else:
+        elif Hat() == "hat":
             self.hat_status = 3
+        elif GetHighScore() < 20:
+            self.hat_status = 2
 
     def show_character_selection(self):
         # Create character selection screen, talks with txt files
 
-        hat_image = pg.image.load(os.path.join(self.img_folder_path, "hat1.png")).convert_alpha()
-        normal_image = pg.image.load(os.path.join(self.img_folder_path, "IdleL2.png")).convert_alpha()
+        hat_image = pg.image.load(
+            os.path.join(self.img_folder_path, "hat1.png")
+        ).convert_alpha()
+        normal_image = pg.image.load(
+            os.path.join(self.img_folder_path, "IdleL2.png")
+        ).convert_alpha()
         hat_character = normal_image.copy()
         hat_character.blit(hat_image, (0, -8))
 
         character_screen = True
         while character_screen:
             self.screen.fill(self.LIGHTBLUE)
-            draw_text(self.screen, "Character Selection", 50, self.WIDTH / 2, self.HEIGHT / 4)
-            draw_text(self.screen, "Press ESC to return", 22, self.WIDTH / 2, self.HEIGHT * 0.8)
+            draw_text(
+                self.screen, "Character Selection", 50, self.WIDTH / 2, self.HEIGHT / 4
+            )
+            draw_text(
+                self.screen,
+                "Press ESC to return",
+                22,
+                self.WIDTH / 2,
+                self.HEIGHT * 0.8,
+            )
 
             # Draw untouched buttons
-            self.hat_button = pg.Rect(self.WIDTH / 2 - 50, self.HEIGHT / 2 - 10, 100, 30)
-            self.normal_button = pg.Rect(self.WIDTH / 2 - 50, self.HEIGHT / 2 + 40, 100, 30)
+            self.hat_button = pg.Rect(
+                self.WIDTH / 2 - 50, self.HEIGHT / 2 - 10, 100, 30
+            )
+            self.normal_button = pg.Rect(
+                self.WIDTH / 2 - 50, self.HEIGHT / 2 + 40, 100, 30
+            )
 
             # Logic for drawing touched buttons
             selected_char = SelectedChar()
             if selected_char == 0:
                 pg.draw.rect(self.screen, self.BLUE, self.normal_button)
                 pg.draw.rect(self.screen, self.BLACK, self.hat_button, 2)
-                draw_text(self.screen, "Normal", 22, self.WIDTH / 2, self.HEIGHT / 2 + 40)
+                draw_text(
+                    self.screen, "Normal", 22, self.WIDTH / 2, self.HEIGHT / 2 + 40
+                )
                 draw_text(self.screen, "Hat", 22, self.WIDTH / 2, self.HEIGHT / 2 - 10)
-                self.screen.blit(normal_image, (self.WIDTH / 2 + 100, self.HEIGHT / 2 - 50))
+                self.screen.blit(
+                    normal_image, (self.WIDTH / 2 + 100, self.HEIGHT / 2 - 50)
+                )
 
             elif selected_char == 1:
                 pg.draw.rect(self.screen, self.BLUE, self.hat_button)
                 pg.draw.rect(self.screen, self.BLACK, self.normal_button, 2)
-                draw_text(self.screen, "Normal", 22, self.WIDTH / 2, self.HEIGHT / 2 + 40)
+                draw_text(
+                    self.screen, "Normal", 22, self.WIDTH / 2, self.HEIGHT / 2 + 40
+                )
                 draw_text(self.screen, "Hat", 22, self.WIDTH / 2, self.HEIGHT / 2 - 10)
-                self.screen.blit(hat_character, (self.WIDTH / 2 + 100, self.HEIGHT / 2 - 50))
+                self.screen.blit(
+                    hat_character, (self.WIDTH / 2 + 100, self.HEIGHT / 2 - 50)
+                )
 
             else:
                 pg.draw.rect(self.screen, self.BLACK, self.hat_button, 2)
                 pg.draw.rect(self.screen, self.BLACK, self.normal_button, 2)
-                draw_text(self.screen, "Normal", 22, self.WIDTH / 2, self.HEIGHT / 2 + 40)
+                draw_text(
+                    self.screen, "Normal", 22, self.WIDTH / 2, self.HEIGHT / 2 + 40
+                )
                 draw_text(self.screen, "Hat", 22, self.WIDTH / 2, self.HEIGHT / 2 - 10)
 
             # event handler
@@ -202,4 +334,3 @@ class Main_menu():
                         SetChar("0")
 
             pg.display.flip()
-
