@@ -22,7 +22,7 @@ Skybound is a 2D platformer built with Python and Pygame, now available to play 
 - **State Management**: Multiple game screens (Menu, Start, Game, Pause, Game Over)
 - **Fluid Animations**: Character animations using spritesheets with JSON metadata
 - **Dynamic Audio**: Different background music for each game state
-- **Enemy AI**: NPC monster with simple pursuit behavior
+- **Enemy movement logic**: NPC monster with simple pursuit behavior
 - **Procedural Generation**: Infinite, random level creation
 - **Shop System**: In-game store with unlockable characters
 - **Persistent Storage**: Save high scores and character selections
@@ -32,11 +32,11 @@ Skybound is a 2D platformer built with Python and Pygame, now available to play 
 - **Documented** according to PEP-8 (ish) and well structured.
 
 
-## Web Version Update
+## Web Version Update (soon!)
 The game has been ported to run in web browsers using Pygbag. This allows anyone to play the game without installation.
 
 
-### Technical Changes for Web Version:
+### Technical Changes for Web Version (soon!):
 - Implemented asynchronous game loop for browser compatibility
 - Optimized asset loading for web environment
 - Added support for browser-specific input handling
@@ -110,9 +110,8 @@ Skybound
 └── requirements.txt       # Project dependencies
 ```
 
-## Missing functionality:
+## Functionality to add:
 - Parallaxing background + Background shaders
-- Pause screen: Clickable buttons, pause music functionality
 
 ## I took the background images from here
 [Background images](https://craftpix.net/freebies/free-sky-with-clouds-background-pixel-art-set/)
