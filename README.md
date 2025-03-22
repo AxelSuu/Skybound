@@ -1,5 +1,4 @@
 # Skybound
-![Skybound Logo](imgs/IdleL2.png)
 
 A fast-paced 2D platformer with procedurally generated levels and animated characters
 
