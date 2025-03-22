@@ -8,12 +8,12 @@ Skybound is a 2D platformer built with Python and Pygame, now available to play 
 
 <table>
   <tr>
-    <td><img src="imgs/1.png" alt="drawing" width="200"/></td>
-    <td><img src="imgs/2.png" alt="drawing" width="200"/></td>
-    <td><img src="imgs/3.png" alt="drawing" width="200"/></td>
-    <td><img src="imgs/4.png" alt="drawing" width="200"/></td>
-    <td><img src="imgs/5.png" alt="drawing" width="200"/></td>
-    <td><img src="imgs/6.png" alt="drawing" width="200"/></td>
+    <td><img src="imgs/1.png" alt="drawing" width="300"/></td>
+    <td><img src="imgs/2.png" alt="drawing" width="300"/></td>
+    <td><img src="imgs/3.png" alt="drawing" width="300"/></td>
+    <td><img src="imgs/4.png" alt="drawing" width="300"/></td>
+    <td><img src="imgs/5.png" alt="drawing" width="300"/></td>
+    <td><img src="imgs/6.png" alt="drawing" width="300"/></td>
   </tr>
 </table>
 
