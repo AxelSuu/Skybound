@@ -3,7 +3,7 @@
 A fast-paced 2D platformer with procedurally generated levels and animated characters
 
 ## About the Game
-Skybound is a 2D platformer built with Python and Pygame, now available to play in web browsers! Navigate through procedurally generated platforms, avoid enemies, and try to achieve the highest score possible.
+Skybound is a 2D platformer built with Python and Pygame! Navigate through procedurally generated platforms, avoid enemies, and try to achieve the highest score possible.
 
 <table>
   <tr>
