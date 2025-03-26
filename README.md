@@ -31,13 +31,7 @@ Skybound is a 2D platformer built with Python and Pygame, now available to play 
 
 
 ## Web Version Update (soon!)
-The game has been ported to run in web browsers using Pygbag. This allows anyone to play the game without installation.
-
-
-### Technical Changes for Web Version (soon!):
-- Implemented asynchronous game loop for browser compatibility
-- Optimized asset loading for web environment
-- Added support for browser-specific input handling
+Web version port coming soon
 
 ## Controls
 - **Space/Up Arrow**: Jump
