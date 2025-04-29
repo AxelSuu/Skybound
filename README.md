@@ -103,7 +103,7 @@ Skybound
 ```
 
 ## Functionality to add:
-- Parallaxing background + Background shaders
+- Background shaders, web mode
 
 ## I took the background images from here
 [Background images](https://craftpix.net/freebies/free-sky-with-clouds-background-pixel-art-set/)
