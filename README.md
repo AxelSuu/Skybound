@@ -2,9 +2,6 @@
 
 A fast-paced 2D platformer with procedurally generated levels and animated characters
 
-## About the Game
-Skybound is a 2D platformer built with Python and Pygame! With procedurally generated platforms,  enemies, and different characters.
-
 <table>
   <tr>
     <td><img src="imgs/1.png"/></td>
@@ -28,12 +25,34 @@ Skybound is a 2D platformer built with Python and Pygame! With procedurally gene
 - **Documented** according to PEP-8 (ish) and well structured.
 
 
-## Web Version Update (soon!)
-Web version port coming soon
-
 ## Controls
 - **Space/Up Arrow**: Jump
 - **Left/Right Arrow**: Move left/right
+
+## Setup Instructions
+
+1. Clone the repository:
+   ```
+   git clone https://github.com/AxelSuu/Skybound
+   cd Skybound
+   ```
+
+2. Install the required dependencies:
+   ```
+   pip install -r requirements.txt
+   ```
+
+3. Build the application
+   ```
+   pyinstaller skybound.spec
+   ```
+4. Or run in code
+   ```
+   python3 main.py
+   ```
+
+
+
 
 ## Project structure
 ```
@@ -101,33 +120,11 @@ Skybound
 ```
 
 ## Functionality to add:
-- Background shaders, web mode
+- Background shaders, web version port
 
 ## I took the background images from here
 [Background images](https://craftpix.net/freebies/free-sky-with-clouds-background-pixel-art-set/)
 
-
-## Setup Instructions
-
-1. Clone the repository:
-   ```
-   git clone https://github.com/AxelSuu/Skybound
-   cd Skybound
-   ```
-
-2. Install the required dependencies:
-   ```
-   pip install -r requirements.txt
-   ```
-
-3. Build the application
-   ```
-   pyinstaller skybound.spec
-   ```
-4. Or run the application
-   ```
-   python3 main.py
-   ```
 
 ## Contributing
 
