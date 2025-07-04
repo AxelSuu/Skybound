@@ -83,12 +83,13 @@ class Main_Loop:
                 if not isinstance(self.current_window, Pause):
                     if not self.pause_music:
                         self.channel1.unpause()
-                    self.current_window = Pause()
+                    self.current_window = Pause(self)
                     self.channel1.pause()
 
             elif current_state == "GAME_OVER":
                 if not isinstance(self.current_window, Gameover):
-                    self.channel1.unpause()
+                    if not self.pause_music:
+                        self.channel1.unpause()
                     self.current_window = Gameover()
                     self.channel1.pause()
 
@@ -105,7 +106,7 @@ class Main_Loop:
                 pg.quit()
 
     # This functionality was never implemented (pause screen was never finished)
-    def pause_music(self):
+    def pause_music_func(self):
         """Pause the music."""
         self.pausemusic = True
         self.channel1.pause()
