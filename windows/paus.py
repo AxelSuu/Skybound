@@ -16,13 +16,15 @@ from utils.database_logic import (
 
 
 class Pause:
-    def __init__(self, loop):
+    def __init__(self, loop, main):
         self.WIDTH = 480
         self.HEIGHT = 600
         self.LIGHTBLUE = (135, 206, 235)
         self.running1 = True
         self.loop = loop
+        self.main = main
         self.screen = pg.display.set_mode((self.WIDTH, self.HEIGHT))
+        self.space_pressed = False
         SetHighScore(GetScore())
         self.show_menu()
 
@@ -82,8 +84,19 @@ class Pause:
                 self.loop.running = False
                 SetGamestate("MAIN_MENU")
 
-            # Here would music pause functionality be implemented
-            if keys[pg.K_SPACE]:
-                pass
+            if keys[pg.K_SPACE] and not self.space_pressed:
+                self.space_pressed = True
+                if self.main.pause_music:
+                    # Unpause music
+                    self.main.channel3.unpause()
+                    self.main.pause_music = False
+                    print("Music unpaused")
+                else:
+                    # Pause music
+                    self.main.pause_music_func()
+                    self.main.pause_music = True
+                    print("Music paused")
+            elif not keys[pg.K_SPACE]:
+                self.space_pressed = False
 
             pg.display.flip()
