@@ -105,7 +105,7 @@ class Loop():
         if (self.closebutton.rect.x + 50 > self.mouse[0] > self.closebutton.rect.x and
                 self.closebutton.rect.y + 50 > self.mouse[1] > self.closebutton.rect.y):
             if self.click[0] == 1:
-                Pause(self)
+                Pause(self, self.main)
 
         # Mob AI logic
         if self.player.pos.x < self.mob.pos.x:
