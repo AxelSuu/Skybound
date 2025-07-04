@@ -28,10 +28,10 @@ class Start:
     def start_screen(self):
 
         # This block is for a cool start screen dev message
-        if GetScore() == 1:
+        if GetHighScore() == 0:
             self.screen.fill(self.LIGHTBLUE)
             text = string.ascii_letters + " " + "!" + "/"
-            target = "Hello /Axel S"
+            target = "Hello /Axel"
             result = ""
             for letter in target:
                 while True:
@@ -45,9 +45,9 @@ class Start:
                     if I == letter:
                         result += I
                         break
-                    time.sleep(0.001)
-                time.sleep(0.001)
-            time.sleep(1)
+                    time.sleep(0.000001)
+                time.sleep(0.000001)
+            time.sleep(0.5)
 
         # The actual start screen loop
         while self.OnstartScreen:
