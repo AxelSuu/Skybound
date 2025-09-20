@@ -1,6 +1,6 @@
 # Skybound
 
-A fast-paced 2D platformer with procedurally generated levels and animated characters
+A 2D platformer with procedurally generated levels and animated characters
 
 <table>
   <tr>
@@ -129,3 +129,4 @@ Skybound
 ## Contributing
 
 Feel free to submit issues or pull requests for improvements or bug fixes.
+
